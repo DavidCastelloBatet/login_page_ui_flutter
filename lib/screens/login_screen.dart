@@ -120,6 +120,26 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildLoginButton() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 25.0),
+      child: RaisedButton(
+        elevation: 5.0,
+        onPressed: () => print('Login Button Pressed'),
+        padding: EdgeInsets.all(15.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+        color: Colors.white,
+        child: Text(
+          'LOGIN',
+          style: kLoginButtonStyle,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,14 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   _builPasswordTF(),
                   _buildForgotPasswordBtn(),
                   _buildRememberMeCheckbox(),
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 25.0),
-                    child: RaisedButton(
-                      elevation: 5.0,
-                      onPressed: () => print('Login Button Pressed'),
-                    ),
-                  ),
+                  _buildLoginButton(),
+                  Column(
+                    children: <Widget>[],
+                  )
                 ],
               ),
             ),

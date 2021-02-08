@@ -10,6 +10,12 @@ final kLabelStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontFamily: 'OpenSans',
 );
+final kLoginButtonStyle = TextStyle(
+    color: Color(0xFF527DAA),
+    letterSpacing: 1.5,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans');
 
 final kBoxDecorationStyle = BoxDecoration(
   color: Color(0xff6ca8f1),
