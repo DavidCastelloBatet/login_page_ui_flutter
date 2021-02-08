@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:login_page_ui_flutter/utilities/constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -183,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget buildSocialBtnRow() {
+  Widget _buildSocialBtnRow() {
     return Padding(
       padding: EdgeInsets.all(30.0),
       child: Row(
@@ -202,62 +205,97 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildSignupBtn() {
+    return GestureDetector(
+      onTap: () => print('Sign Up button Pressed'),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: 'Don\'t have an account ?   ',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            TextSpan(
+              text: 'Sign up',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xff73aef5),
-                  Color(0xff61a4f1),
-                  Color(0xff478de0),
-                  Color(0xff398ae5),
-                ],
-                stops: [0.1, 0.4, 0.7, 0.9],
-              ),
-            ),
-          ),
-          Container(
-            height: double.infinity,
-            child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(
-                vertical: 120.0,
-                horizontal: 40.0,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Sign In',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'OpenSans',
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Stack(
+            children: <Widget>[
+              Container(
+                height: double.infinity,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xff73aef5),
+                      Color(0xff61a4f1),
+                      Color(0xff478de0),
+                      Color(0xff398ae5),
+                    ],
+                    stops: [0.1, 0.4, 0.7, 0.9],
                   ),
-                  SizedBox(height: 30.0),
-                  _buildEmailTF(),
-                  SizedBox(height: 30.0),
-                  _builPasswordTF(),
-                  _buildForgotPasswordBtn(),
-                  _buildRememberMeCheckbox(),
-                  _buildLoginButton(),
-                  _buildSignInWithText(),
-                  _builSocialBtnRow(),
-                ],
+                ),
               ),
-            ),
+              Container(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 120.0,
+                    horizontal: 40.0,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        'Sign In',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'OpenSans',
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 30.0),
+                      _buildEmailTF(),
+                      SizedBox(height: 30.0),
+                      _builPasswordTF(),
+                      _buildForgotPasswordBtn(),
+                      _buildRememberMeCheckbox(),
+                      _buildLoginButton(),
+                      _buildSignInWithText(),
+                      _buildSocialBtnRow(),
+                      _buildSignupBtn(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
