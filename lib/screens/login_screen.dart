@@ -77,6 +77,20 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildForgotPasswordBtn() {
+    return Container(
+      alignment: Alignment.centerRight,
+      child: FlatButton(
+        padding: EdgeInsets.only(right: 0.0),
+        onPressed: () => print('Forgot Password Button Pressed'),
+        child: Text(
+          'Forgot Password ?',
+          style: kLabelStyle,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _buildEmailTF(),
                   SizedBox(height: 30.0),
                   _builPasswordTF(),
+                  _buildForgotPasswordBtn(),
                 ],
               ),
             ),
