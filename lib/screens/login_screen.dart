@@ -7,6 +7,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _rememberMe = false;
+
   Widget _buildEmailTF() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,6 +93,33 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildRememberMeCheckbox() {
+    return Container(
+      height: 20.0,
+      child: Row(
+        children: <Widget>[
+          Theme(
+            data: ThemeData(unselectedWidgetColor: Colors.white),
+            child: Checkbox(
+              value: _rememberMe,
+              checkColor: Colors.green,
+              activeColor: Colors.white,
+              onChanged: (value) {
+                setState(() {
+                  _rememberMe = value;
+                });
+              },
+            ),
+          ),
+          Text(
+            'Remember me',
+            style: kLabelStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,6 +167,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 30.0),
                   _builPasswordTF(),
                   _buildForgotPasswordBtn(),
+                  _buildRememberMeCheckbox(),
+                  Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 25.0),
+                    child: RaisedButton(
+                      elevation: 5.0,
+                      onPressed: () => print('Login Button Pressed'),
+                    ),
+                  ),
                 ],
               ),
             ),
