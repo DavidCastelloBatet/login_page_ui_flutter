@@ -159,6 +159,49 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _buildSocialButton(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildSocialBtnRow() {
+    return Padding(
+      padding: EdgeInsets.all(30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildSocialButton(
+            () => print('Login with Facebook'),
+            AssetImage('assets/logos/facebook.jpg'),
+          ),
+          _buildSocialButton(
+            () => print('Login with Google'),
+            AssetImage('assets/logos/google.jpg'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -209,6 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   _buildRememberMeCheckbox(),
                   _buildLoginButton(),
                   _buildSignInWithText(),
+                  _builSocialBtnRow(),
                 ],
               ),
             ),
